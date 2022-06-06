@@ -5,13 +5,20 @@ Uses declarative approach for configuration files - defines the ___end state___ 
 Adjust old config file and re-execute vs adding new setup instractions (imperative style). Shows final state, not instructions how to get there.  
 
 ## Terraform vs Ansible
-Both IaaC, both automate provisioning, configuring and managing the infrastracture. It is a common practice to combine these two.
+Both IaaC, both automate provisioning, configuring and managing the infrastracture. It is a common practice to combine these two:
+
+A, Start with Terraform for provisioning, then use Terraform once infrastructure is ready to call Ansible to do configuration management.
+
+B, Start with Ansible, first step in playbook call Terraform to setup infrastructure, then pickup where Terraform leaves of and configure the infrastructure.
 
 ### Terraform
 - Mainly infrastracture privisioning tool
 - Can deploy apps
 - Relatively new
 - More advanced in orchestration
+- Declarative style
+- Works with state
+- Is idempotent automatically
 
 __Better for infrastructure.__
 
@@ -21,8 +28,16 @@ __Better for infrastructure.__
 - Deploy apps
 - Install/Update software
 - More mature
+- Procedural style (kind of hybrid)
+- You need to implement steps
+- Idempotency is not required, but can be implemented
 
 __Better for configuring that infrastructure.__
+
+### Similarities
+- Support heavy templating
+- Open source projects
+- Agentless - you don't install agent - both plug and play tools
 
 ## Terraform use cases
 Create infrastructure.  
@@ -77,4 +92,5 @@ Destroy the resources/infrastracture.  When `destroy` command is executed, terra
 
 
 ## Sources
-[Terraform explained in 15 mins | Terraform Tutorial for Beginners - TechWorld with Nana](https://www.youtube.com/watch?v=l5k1ai_GBDE)
+[Terraform explained in 15 mins | Terraform Tutorial for Beginners - TechWorld with Nana](https://www.youtube.com/watch?v=l5k1ai_GBDE)  
+[Ansible vs. Terraform: What's the difference? - IBM Technology](https://www.youtube.com/watch?v=rx4Uh3jv1cA)
